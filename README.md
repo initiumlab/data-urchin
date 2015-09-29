@@ -19,6 +19,7 @@ The boilerplate and utilities for Data Science in Python3.
 * `virtualenv -p python3 venv` or `pyvenv venv`
 * `source venv/bin/activate`
 * `pip install -r requirements.txt`
+* Use `ipython notebook` to launch the environment
 * Copy any interesting stuff from `boilerplates` to the root and hack away
 
 
