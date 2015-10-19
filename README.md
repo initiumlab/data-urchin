@@ -1,4 +1,4 @@
-# Data Urchin
+# [Data Urchin](https://github.com/initiumlab/data-urchin)
 
 The boilerplate and utilities for Data Science in Python3.
 
