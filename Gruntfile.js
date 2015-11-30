@@ -68,6 +68,21 @@ module.exports = function(grunt) {
         tasks: ['jshint:lib_test', 'qunit']
       }
     },
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        exclude: [".git*","*.scss","node_modules"],
+        recursive: true
+      },
+      showcase: {
+        options: {
+          src: "./dist/",
+          dest: "/home/vagrant/web/data-urchin",
+          host: "showcase",
+          delete: true // Careful this option could cause data loss, read the docs!
+        }
+      }
+    },
 	shell: {
       initDist: {
         command: [
@@ -92,9 +107,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-rsync');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', ['shell:initDist', 'shell:compile']);
+  grunt.registerTask('deploy:staging', ['rsync:showcase']);
 
 };
