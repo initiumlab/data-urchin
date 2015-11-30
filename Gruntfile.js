@@ -67,7 +67,22 @@ module.exports = function(grunt) {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'qunit']
       }
-    }
+    },
+	shell: {
+      initDist: {
+        command: [
+          'rm -rf dist/',
+          'mkdir -p dist'
+        ].join('&&')
+      },
+      compile: {
+        command: [
+          'ipython nbconvert --to html boilerplates/Sample.ipynb',
+          'mv Sample.html dist/'
+        ].join('&&')
+      }
+	}
+
   });
 
   // These plugins provide necessary tasks.
@@ -76,8 +91,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('build', ['shell:initDist', 'shell:compile']);
 
 };
