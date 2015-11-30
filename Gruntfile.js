@@ -95,6 +95,12 @@ module.exports = function(grunt) {
           'ipython nbconvert --to html boilerplates/Sample.ipynb',
           'mv Sample.html dist/'
         ].join('&&')
+      },
+      executeAndCompile: {
+        command: [
+          'ipython nbconvert --to html --ExecutePreprocessor.enabled=True boilerplates/Sample.ipynb',
+          'mv Sample.html dist/'
+        ].join('&&')
       }
     },
     'gh-pages': {
@@ -122,7 +128,9 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('build', ['shell:initDist', 'shell:compile']);
+  grunt.registerTask('build:quick', ['shell:initDist', 'shell:compile']);
+  grunt.registerTask('build:complete', ['shell:initDist', 'shell:executeAndCompile']);
+  grunt.registerTask('build', 'build:complete');
   grunt.registerTask('deploy:staging', ['rsync:showcase']);
   grunt.registerTask('deploy:prod', ['gh-pages:gh-pages']);
 
