@@ -6,10 +6,10 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+    '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+    '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+    '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+    ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
       options: {
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
     rsync: {
       options: {
         args: ["--verbose"],
-        exclude: [".git*","*.scss","node_modules"],
+        exclude: [".git*", "*.scss", "node_modules"],
         recursive: true
       },
       showcase: {
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
         }
       }
     },
-	shell: {
+    shell: {
       initDist: {
         command: [
           'rm -rf dist/',
@@ -96,8 +96,18 @@ module.exports = function(grunt) {
           'mv Sample.html dist/'
         ].join('&&')
       }
-	}
-
+    },
+    'gh-pages': {
+      options: {
+        // Options for all targets go here.
+      },
+      'gh-pages': {
+        options: {
+          base: 'dist/'
+        },
+        src: ['**']
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -108,10 +118,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-rsync');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   grunt.registerTask('build', ['shell:initDist', 'shell:compile']);
   grunt.registerTask('deploy:staging', ['rsync:showcase']);
+  grunt.registerTask('deploy:prod', ['gh-pages:gh-pages']);
 
 };
