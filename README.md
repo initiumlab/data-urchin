@@ -31,3 +31,12 @@ Following usage:
 ## Sample pages
 
 * http://project.initiumlab.com/data-urchin/Sample.html
+
+## Docker
+
+```
+docker run -v data:/data -it hupili/urchin bash
+```
+
+You can find the volumen on your docker-machine in following folder:
+`/var/lib/docker/volumes/data/_data`
