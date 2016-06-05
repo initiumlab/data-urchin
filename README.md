@@ -35,7 +35,7 @@ Following usage:
 ## Docker
 
 ```
-docker run -v data:/data -it hupili/urchin bash
+docker run -v data:/data -p 8888:8888 -it hupili/urchin ipython notebook --ip 0.0.0.0
 ```
 
 You can find the volumen on your docker-machine in following folder:

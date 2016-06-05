@@ -1,4 +1,3 @@
-appnope
 beautifulsoup4
 chardet
 cssselect
@@ -40,3 +39,4 @@ scipy
 sympy
 matplotlib 
 ipython[notebook]
+notebook

@@ -1,1 +1,4 @@
 venv
+venv.back
+dist
+node_modules
