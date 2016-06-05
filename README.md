@@ -34,9 +34,18 @@ Following usage:
 
 ## Docker
 
+### Get the docker image
+
+Choose either way:
+
+* `docker pull hupili/urchin`
+* `docker build -t hupili/urchin .`
+
+### Run The Notebook
+
 ```
-docker run -v data:/data -p 8888:8888 -it hupili/urchin ipython notebook --ip 0.0.0.0
+docker run -v urchin:/app -p 8888:8888 -it hupili/urchin ipython notebook --ip 0.0.0.0
 ```
 
 You can find the volumen on your docker-machine in following folder:
-`/var/lib/docker/volumes/data/_data`
+`/var/lib/docker/volumes/urchin/_data`
