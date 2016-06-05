@@ -1,0 +1,16 @@
+version: '2'
+services:
+  urchin:
+    build: .
+    image: hupili/urchin
+    ports:
+      - "8888:8888"
+      - "9000:9000"
+    volumes:
+      - .:/app
+    command: sh -c 'ipython notebook --ip 0.0.0.0'
+    depends_on:
+     - redis
+  redis:
+    image: redis
+
