@@ -12,7 +12,31 @@ The boilerplate and utilities for Data Science in Python3.
 * [TODO] Integration with production-ready Javascript libraries
 * [TODO] Workflow for Continuous Deployment of mining results
 
-## Usage
+## Usage -- Docker Compose
+
+* `docker-compose up`.
+* Visit port 8888 on `docker-machine ip XXXX` to operate the notebook.
+* Be default, this current dir is mapped into the container as working folder. You can pass code/data in directly.
+
+## Usage -- Docker
+
+### Get the docker image
+
+Choose either way:
+
+* `docker pull hupili/urchin`
+* `docker build -t hupili/urchin .`
+
+### Run The Notebook
+
+```
+docker run -v urchin:/app -p 8888:8888 -it hupili/urchin ipython notebook --ip 0.0.0.0
+```
+
+You can find the volumen on your docker-machine in following folder:
+`/var/lib/docker/volumes/urchin/_data`
+
+## Usage -- Plain Format
 
 Initial setup:
 
@@ -32,20 +56,3 @@ Following usage:
 
 * http://project.initiumlab.com/data-urchin/Sample.html
 
-## Docker
-
-### Get the docker image
-
-Choose either way:
-
-* `docker pull hupili/urchin`
-* `docker build -t hupili/urchin .`
-
-### Run The Notebook
-
-```
-docker run -v urchin:/app -p 8888:8888 -it hupili/urchin ipython notebook --ip 0.0.0.0
-```
-
-You can find the volumen on your docker-machine in following folder:
-`/var/lib/docker/volumes/urchin/_data`
