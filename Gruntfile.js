@@ -99,7 +99,7 @@ module.exports = function(grunt) {
       executeAndCompile: {
         command: [
           'ipython nbconvert --to html --ExecutePreprocessor.enabled=True boilerplates/Sample.ipynb',
-          'mv Sample.html dist/'
+          'mv boilerplates/Sample.html dist/'
         ].join('&&')
       },
       postCompile: {
