@@ -54,5 +54,5 @@ Following usage:
 
 ## Sample pages
 
-* http://project.initiumlab.com/data-urchin/Sample.html
+* team.initiumlab.com/data-urchin/
 
