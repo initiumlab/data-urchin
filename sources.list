@@ -1,2 +1,2 @@
-deb http://ftp.cuhk.edu.hk/pub/Linux/ubuntu/ xenial main 
-deb-src http://ftp.cuhk.edu.hk/pub/Linux/ubuntu/ xenial main 
+deb http://ftp.cuhk.edu.hk/pub/Linux/ubuntu/ xenial main restricted universe multiverse
+deb-src http://ftp.cuhk.edu.hk/pub/Linux/ubuntu/ xenial main restricted universe multiverse
