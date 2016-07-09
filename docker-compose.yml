@@ -2,7 +2,7 @@ version: '2'
 services:
   urchin:
     build: .
-    image: hupili/urchin
+    image: initiumlab/urchin
     ports:
       - "8888:8888"
       - "9000:9000"
