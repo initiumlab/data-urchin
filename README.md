@@ -24,13 +24,13 @@ The boilerplate and utilities for Data Science in Python3.
 
 Choose either way:
 
-* `docker pull hupili/urchin`
-* `docker build -t hupili/urchin .`
+* `docker pull initiumlab/urchin`
+* `docker build -t initiumlab/urchin .`
 
 ### Run The Notebook
 
 ```
-docker run -v urchin:/app -p 8888:8888 -it hupili/urchin sh -c 'ipython notebook --ip 0.0.0.0'
+docker run -v urchin:/app -p 8888:8888 -it initiumlab/urchin sh -c 'ipython notebook --ip 0.0.0.0'
 ```
 
 You can find the volumen on your docker-machine in following folder:
