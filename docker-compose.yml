@@ -32,7 +32,7 @@ services:
       - elasticsearch
     links:
       - elasticsearch
-    command: logstash -w 2 -f /dataset/weather/hongkong-weather-logstash.conf
+    command: logstash -f /dataset/aqi/hongkong-aqi-logstash.conf
 
   kibana:
     image: initiumlab/analytics-kibana:4.5.3-1
