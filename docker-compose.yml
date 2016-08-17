@@ -9,8 +9,34 @@ services:
     volumes:
       - .:/app
     command: sh -c 'ipython notebook --ip 0.0.0.0'
-    depends_on:
-     - redis
-  redis:
-    image: redis
+
+  elasticsearch:
+    image: initiumlab/analytics-elasticsearch:2.3.4-1
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      ES_HEAP_SIZE: 4g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  logstash:
+    image: initiumlab/analytics-logstash:2.3.4-1
+    volumes:
+      - ./data:/data
+      - ./logstash.conf:/etc/logstash/logstash.conf
+    ports:
+      - "5000:5000"
+      - "5044:5044"
+      - "12201:12201/udp"
+    links:
+      - elasticsearch
+    command: logstash -w 2 -f /etc/logstash/logstash.conf
+
+  kibana:
+    image: initiumlab/analytics-kibana:4.5.3-1
+    ports:
+      - "5601:5601"
+    links:
+      - elasticsearch
 
