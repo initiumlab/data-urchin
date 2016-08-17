@@ -23,20 +23,23 @@ services:
   logstash:
     image: initiumlab/analytics-logstash:2.3.4-1
     volumes:
-      - ./data:/data
-      - ./logstash.conf:/etc/logstash/logstash.conf
+      - ./dataset:/dataset
     ports:
       - "5000:5000"
       - "5044:5044"
       - "12201:12201/udp"
+    depends_on:
+      - elasticsearch
     links:
       - elasticsearch
-    command: logstash -w 2 -f /etc/logstash/logstash.conf
+    command: logstash -w 2 -f /dataset/weather/hongkong-weather-logstash.conf
 
   kibana:
     image: initiumlab/analytics-kibana:4.5.3-1
     ports:
       - "5601:5601"
+    depends_on:
+      - elasticsearch
     links:
       - elasticsearch
 
