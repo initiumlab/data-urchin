@@ -52,3 +52,4 @@ terminado
 tornado
 traitlets
 w3lib
+networkx
